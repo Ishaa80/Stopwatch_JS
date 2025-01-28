@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Stopwatch <img src="/time-tracking.png" alt="" height="50px"></h1>
+        <div class="time">
+            <h2 id="hrs">00</h2>
+            <h2>:</h2>
+            <h2 id="mins">00</h2>
+            <h2>:</h2>
+            <h2 id="secs">00</h2>
+            <h2>:</h2>
+            <h2 id="milli">00</h2>
+        </div>
+        
+        <div class="buttons">
+            <button div="start" onclick="startTimer()">Start</button>
+            <button div="stop" onclick="stopTimer()">Stop</button>
+            <button div="reset" onclick="resetTimer()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let milli = 0;
+        let secs = 0;
+        let mins = 0;
+        let hrs = 0;
+        let timer = false;
+
+        function startTimer() {
+            timer = true;
+            myFunc();
+        }
+
+        function stopTimer() {
+            timer = false;
+            myFunc();
+        }
+
+        function resetTimer() {
+            location.reload();
+        }
+        
+        function myFunc() {
+            if (timer == true) {
+                milli = milli + 1;
+            }
+            if (milli == 100) {
+                secs = secs + 1;
+                milli = 0;
+            }
+            if (secs == 60) {
+                mins = mins + 1;
+                secs = 0;
+            }
+            if (mins == 60) {
+                hrs = hrs + 1;
+                mins = 0;
+            }
+
+            let getmilli = milli;
+            let getsec = secs;
+            let getmin = mins;
+            let gethrs = hrs;
+
+            if (milli < 10) {
+                getmilli = "0" + milli;
+            }
+
+            if (secs < 10) {
+                getsec = "0" + secs;
+            }
+
+            if (mins < 10) {
+                getmin = "0" + mins;
+            }
+
+            if (hrs < 10) {
+                gethrs = "0" + hrs;
+            }
+
+            setTimeout(myFunc, 10);
+            document.getElementById("milli").innerText = getmilli;
+            document.getElementById("secs").innerText = getsec;
+            document.getElementById("mins").innerText = getmin;
+            document.getElementById("hrs").innerText = gethrs;
+        }
+
+    </script>
+</body>
+
+</html>
